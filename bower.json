@@ -17,7 +17,7 @@
   ],
   "license": "MIT",
   "homepage": "www.domo.com",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
