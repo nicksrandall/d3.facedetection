@@ -1,5 +1,5 @@
 {
-  "name": "d3.facedetection.js",
+  "name": "d3.facedetection",
   "version": "0.0.0",
   "authors": [
     "Nick Randall <nick.randall@domo.com>"
@@ -26,7 +26,6 @@
     "tests"
   ],
   "dependencies": {
-    "d3": "~3.5.3",
-    "lodash": "~2.4.1"
+    "d3": "^3.4.0"
   }
 }
