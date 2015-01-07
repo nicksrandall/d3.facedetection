@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Face Detection Example</title>
+  </head>
+  <body>
+    <!-- <svg height="500" width="500">
+      <image id="face" xlink:href="pitt.jpg" x="0" y="0" height="500px" width="500px"/>
+    </svg> -->
+    <div class="picture-container">
+        <svg height="350px" width="620px" version="1.1"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+          <image id="picture" xlink:href="picture.jpg" x="0" y="0" width="310px" height="175px"></image>
+          <g id="faceBoxes" transform="translate(0, 0)">
+          </g>
+        </svg>
+    </div>
+
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <script type="text/javascript" src="../dist/d3.facedetection.js"></script>
+    <script type="text/javascript">
+      d3.select('#picture').faceDetection({
+        async: false,
+        error: function (code, message) { alert('Error: ', message); },
+        complete: function (faces) {
+          console.log(faces);
+          var container = d3.select('#faceBoxes');
+          var faceBoxes = container.selectAll('rect').data(faces);
+          faceBoxes.enter().append('rect').attr({
+            x: function (d) { return d.x; },
+            y: function (d) { return d.y; },
+            width: function (d) { return d.width; },
+            height: function (d) { return d.height; },
+          })
+          .style({
+            fill: 'none',
+            stroke: 'white'
+          });
+
+          faceBoxes.attr({
+            x: function (d) { return d.x * d.scaleX; },
+            y: function (d) { return d.y * d.scaleY; },
+            width: function (d) { return d.width * d.scaleX; },
+            height: function (d) { return d.height * d.scaleY; },
+          });
+        },
+      });
+    </script>
+  </body>
+</html>
