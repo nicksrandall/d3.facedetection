@@ -1,4 +1,3 @@
-/*! d3.facedetection.js v0.0.0 - MIT license */
 d3.selection.prototype.faceDetection = function (settingsOrCallback) {
   'use strict';
   var time;
@@ -53,26 +52,91 @@ d3.selection.prototype.faceDetection = function (settingsOrCallback) {
     }
 
     function detect() {
-      var source, canvas;
+      var source, canvas, flag = false;
 
       time = new Date().getTime();
+
+      function findFaces () {
+        if (options.grayscale) {
+          canvas = ccv.grayscale(canvas);
+        }
+
+        try {
+          if (options.async && window.Worker) {
+            ccv.detect_objects({
+              'canvas':        canvas,
+              'cascade':       cascade,
+              'interval':      options.interval,
+              'min_neighbors': options.minNeighbors,
+              'worker':        1,
+              'async':         true
+            })(done);
+          } else {
+            done(ccv.detect_objects({
+              'canvas':        canvas,
+              'cascade':       cascade,
+              'interval':      options.interval,
+              'min_neighbors': options.minNeighbors
+            }));
+          }
+        } catch (e) {
+          options.error.apply(elem, [ 2, e.message ]);
+          options.complete.apply(elem, [ false ]);
+        }
+      }
+
+      function done(faces) {
+        var n = faces.length,
+            data = [];
+
+        for (var i = 0; i < n; ++i) {
+          if (options.confidence !== null && faces[i].confidence <= options.confidence) {
+            continue;
+          }
+
+          faces[i].positionX = position.left + faces[i].x;
+          faces[i].positionY = position.top  + faces[i].y;
+          faces[i].offsetX   = offset.left   + faces[i].x;
+          faces[i].offsetY   = offset.top    + faces[i].y;
+          faces[i].scaleX    = scaleX;
+          faces[i].scaleY    = scaleY;
+
+          data.push(faces[i]);
+        }
+
+        data.time = new Date().getTime() - time;
+
+        options.complete.apply(elem, [ data ]);
+      }
 
       if (elem.tagName.toLowerCase() === 'img') {
         source = new Image();
         source.src = elem.src;
 
         canvas = ccv.pre(source);
+        findFaces();
 
       } else if (elem.tagName.toLowerCase() === 'image') {
         source = new Image();
         source.onload = function () {
           scaleX = (offset.width  / source.naturalWidth) || 1;
           scaleY = (offset.height / source.naturalHeight) || 1;
-          console.log(scaleX, scaleY);
+          if (flag) {
+            findFaces();
+          } else {
+            flag = true;
+          }
         };
         source.src = elem.getAttributeNS('http://www.w3.org/1999/xlink', 'href');
 
         canvas = ccv.pre(source);
+
+        if (flag) {
+          findFaces();
+        } else {
+          flag = true;
+        }
+
       } else if (elem.tagName.toLowerCase() === 'video' || elem.tagName.toLowerCase() === 'canvas') {
         var copy, context;
 
@@ -86,58 +150,9 @@ d3.selection.prototype.faceDetection = function (settingsOrCallback) {
         context.drawImage(source, 0, 0);
 
         canvas = ccv.pre(copy);
+        findFaces();
+
       }
-
-      if (options.grayscale) {
-        canvas = ccv.grayscale(canvas);
-      }
-
-      try {
-        if (options.async && window.Worker) {
-          ccv.detect_objects({
-            'canvas':        canvas,
-            'cascade':       cascade,
-            'interval':      options.interval,
-            'min_neighbors': options.minNeighbors,
-            'worker':        1,
-            'async':         true
-          })(done);
-        } else {
-          done(ccv.detect_objects({
-            'canvas':        canvas,
-            'cascade':       cascade,
-            'interval':      options.interval,
-            'min_neighbors': options.minNeighbors
-          }));
-        }
-      } catch (e) {
-        options.error.apply(elem, [ 2, e.message ]);
-        options.complete.apply(elem, [ false ]);
-      }
-    }
-
-    function done(faces) {
-      var n = faces.length,
-          data = [];
-
-      for (var i = 0; i < n; ++i) {
-        if (options.confidence !== null && faces[i].confidence <= options.confidence) {
-          continue;
-        }
-
-        faces[i].positionX = position.left + faces[i].x;
-        faces[i].positionY = position.top  + faces[i].y;
-        faces[i].offsetX   = offset.left   + faces[i].x;
-        faces[i].offsetY   = offset.top    + faces[i].y;
-        faces[i].scaleX    = scaleX;
-        faces[i].scaleY    = scaleY;
-
-        data.push(faces[i]);
-      }
-
-      data.time = new Date().getTime() - time;
-
-      options.complete.apply(elem, [ data ]);
     }
 
     return detect();

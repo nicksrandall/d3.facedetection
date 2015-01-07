@@ -1,6 +1,10 @@
 'use strict';
 
 module.exports = function(grunt) {
+  // measures the time each task takes
+  require('time-grunt')(grunt);
+  // load grunt config
+  require('load-grunt-config')(grunt);
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -33,17 +37,18 @@ module.exports = function(grunt) {
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint', 'qunit']
+    },
+    release: {
+      options: {
+        bump: true,
+        changelog: true,
+        additionalFiles: ['bower.json']
+      }
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-
   grunt.registerTask('test', ['jshint', 'qunit']);
 
-  grunt.registerTask('default', ['concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 
 };

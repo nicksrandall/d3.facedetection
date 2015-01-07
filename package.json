@@ -10,6 +10,9 @@
     "grunt-contrib-qunit": "^0.5.2",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
-    "jshint-stylish": "^1.0.0"
+    "grunt-release": "^0.9.0",
+    "jshint-stylish": "^1.0.0",
+    "load-grunt-config": "^0.16.0",
+    "time-grunt": "^1.0.0"
   }
 }
