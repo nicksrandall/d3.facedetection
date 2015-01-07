@@ -12,7 +12,7 @@ Get started
 
 Download the plugin with the method of your choice.
 
-- Download the [last release](jaysalvat.github.io/jquery.facedetection/releases/latest/jquery.facedetection.zip) manually
+- Download the [last release](https://github.com/nicksrandall/d3.facedetection/archive/v3.0.0.tar.gz) manually
 - Or install it with [Bower](http://bower.io/).
 
         bower install d3.facedetection
