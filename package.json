@@ -1,7 +1,7 @@
 {
   "name": "d3.facedetection",
   "description": "Face Detection for SVG, HTML, Canvas and Videos",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "main": "dist/d3.facedetection.js",
   "devDependencies": {
     "grunt": "^0.4.5",
