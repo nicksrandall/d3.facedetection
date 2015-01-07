@@ -1,9 +1,32 @@
 {
-  "name": "jquery.facedetection",
-  "version": "2.0.1",
-  "homepage": "https://facedetection.jaysalvat.com",
-  "main": "./dist/jquery.facedetection.min.js",
+  "name": "d3.facedetection.js",
+  "version": "0.0.0",
+  "authors": [
+    "Nick Randall <nick.randall@domo.com>"
+  ],
+  "description": "Face detection for SVG, HTML, Canvas and Video",
+  "main": "dist/d3.facedetection.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "d3",
+    "ccv",
+    "face",
+    "detection"
+  ],
+  "license": "MIT",
+  "homepage": "www.domo.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
-    "jquery": ">=1.10"
+    "d3": "~3.5.3",
+    "lodash": "~2.4.1"
   }
 }

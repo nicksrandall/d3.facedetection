@@ -1,20 +1,11 @@
-jQuery Face Detection Plugin
+d3.js Face Detection Plugin
 ============================
 
-[![Build Status](https://travis-ci.org/jaysalvat/jquery.facedetection.png?branch=master)](https://travis-ci.org/jaysalvat/{{project}})
-[![NPM version](https://badge.fury.io/js/jquery.facedetection.svg)](http://badge.fury.io/js/jquery.facedetection)
-[![Bower version](https://badge.fury.io/bo/jquery.facedetection.svg)](http://badge.fury.io/bo/jquery.facedetection)
+A d3.js plugin to detect faces on images (both HTML and SVG), videos and canvases to get their coordinates.
 
-A jQuery/Zepto plugin to detect faces on images, videos and canvases to get theirs coordinates.
+> This is a fork of the very popular [jquery.facedetection](http://facedetection.jaysalvat.com) by [jaysalvat](https://github.com/jaysalvat)
 
 **Importante note:** This plugin uses an algorithm by [Liu Liu](http://liuliu.me/).
-
-Demos
------
-
-Website and demo here:
-
-[http://facedetection.jaysalvat.com/](http://facedetection.jaysalvat.com/)
 
 Get started
 -----------
@@ -24,25 +15,25 @@ Download the plugin with the method of your choice.
 - Download the [last release](jaysalvat.github.io/jquery.facedetection/releases/latest/jquery.facedetection.zip) manually
 - Or install it with [Bower](http://bower.io/).
 
-        bower install jquery.facedetection
+        bower install d3.facedetection
 
-- Or install it with [NPM](https://www.npmjs.org/package/jquery.facedetection).
+- Or install it with [NPM](https://www.npmjs.org/package/d3.facedetection).
 
-        npm install jquery.facedetection
+        npm install d3.facedetection
 
-Include [jQuery](http://code.jquery.com/jquery-1.11.1.min.js) and the plugin.
+Include [d3](https://github.com/mbostock/d3/releases/download/v3.5.3/d3.zip) and the plugin.
 
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
-    <script src="path/to/dist/jquery.facedetection.min.js"></script> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script> 
+    <script src="path/to/dist/d3.facedetection.min.js"></script> 
 
-Set a picture with some faces in your HTML page.
+Set a picture with some faces in your HTML (or SVG) page.
 
     <img id="picture" src="img/face.jpg">
 
 Apply the plugin to this image and get the face coordinates.
 
     <script>
-        $('#picture').faceDetection({
+        d3.select('#picture').faceDetection({
             complete: function (faces) {
                 console.log(faces);
             }
@@ -84,4 +75,4 @@ Settings
         error: function (code, message) {
             // ...
         }
-        
+   

@@ -1,6 +1,6 @@
 /*! ----------------------------------------------------------------------------
  *  A jQuery plugin to detect faces on images, videos and canvases.
- *  v2.0.1 released 2014-11-10 17:52
+ *  v2.0.1 released 2014-12-12 16:45
  *  http://facedetection.jaysalvat.com
  *  Copyright (c) 2010-2014, Jay Salvat
  *  http://jaysalvat.com/
@@ -16235,9 +16235,9 @@
             "use strict";
             return parallable.core[funct.toString()] = funct().core, function() {
                 var i, async, worker_num, params;
-                if (arguments.length > 1) for (async = arguments[arguments.length - 2], worker_num = arguments[arguments.length - 1], 
-                params = new Array(arguments.length - 2), i = 0; i < arguments.length - 2; i++) params[i] = arguments[i]; else async = arguments[0].async, 
-                worker_num = arguments[0].worker, params = arguments[0], delete params.async, delete params.worker, 
+                if (arguments.length > 1) for (async = arguments[arguments.length - 2], worker_num = arguments[arguments.length - 1],
+                params = new Array(arguments.length - 2), i = 0; i < arguments.length - 2; i++) params[i] = arguments[i]; else async = arguments[0].async,
+                worker_num = arguments[0].worker, params = arguments[0], delete params.async, delete params.worker,
                 params = [ params ];
                 var scope = {
                     shared: {}
@@ -16249,7 +16249,7 @@
                         var worker = new Worker(file);
                         worker.onmessage = function(i) {
                             return function(event) {
-                                outputs[i] = "string" == typeof event.data ? JSON.parse(event.data) : event.data, 
+                                outputs[i] = "string" == typeof event.data ? JSON.parse(event.data) : event.data,
                                 executed++, executed == worker_num && complete(ctrl.post.apply(scope, [ outputs ]));
                             };
                         }(i);
@@ -16275,8 +16275,8 @@
         pre: function(image) {
             if ("img" == image.tagName.toLowerCase()) {
                 var canvas = document.createElement("canvas");
-                document.body.appendChild(image), canvas.width = image.offsetWidth, canvas.style.width = image.offsetWidth.toString() + "px", 
-                canvas.height = image.offsetHeight, canvas.style.height = image.offsetHeight.toString() + "px", 
+                document.body.appendChild(image), canvas.width = image.offsetWidth, canvas.style.width = image.offsetWidth.toString() + "px",
+                canvas.height = image.offsetHeight, canvas.style.height = image.offsetHeight.toString() + "px",
                 document.body.removeChild(image);
                 var ctx = canvas.getContext("2d");
                 return ctx.drawImage(image, 0, 0), canvas;
@@ -16299,11 +16299,11 @@
                 for (j = 0; j < seq.length; j++) if (i != j && node[j].element && gfunc(node[i].element, node[j].element)) {
                     for (var root2 = j; -1 != node[root2].parent; ) root2 = node[root2].parent;
                     if (root2 != root) {
-                        node[root].rank > node[root2].rank ? node[root2].parent = root : (node[root].parent = root2, 
+                        node[root].rank > node[root2].rank ? node[root2].parent = root : (node[root].parent = root2,
                         node[root].rank == node[root2].rank && node[root2].rank++, root = root2);
-                        for (var temp, node2 = j; -1 != node[node2].parent; ) temp = node2, node2 = node[node2].parent, 
+                        for (var temp, node2 = j; -1 != node[node2].parent; ) temp = node2, node2 = node[node2].parent,
                         node[temp].parent = root;
-                        for (node2 = i; -1 != node[node2].parent; ) temp = node2, node2 = node[node2].parent, 
+                        for (node2 = i; -1 != node[node2].parent; ) temp = node2, node2 = node[node2].parent,
                         node[temp].parent = root;
                     }
                 }
@@ -16332,36 +16332,36 @@
                     data: pyr[0].getContext("2d").getImageData(0, 0, pyr[0].width, pyr[0].height).data
                 };
                 var i;
-                for (i = 1; interval >= i; i++) pyr[4 * i] = document.createElement("canvas"), pyr[4 * i].width = Math.floor(pyr[0].width / Math.pow(scale, i)), 
-                pyr[4 * i].height = Math.floor(pyr[0].height / Math.pow(scale, i)), pyr[4 * i].getContext("2d").drawImage(pyr[0], 0, 0, pyr[0].width, pyr[0].height, 0, 0, pyr[4 * i].width, pyr[4 * i].height), 
+                for (i = 1; interval >= i; i++) pyr[4 * i] = document.createElement("canvas"), pyr[4 * i].width = Math.floor(pyr[0].width / Math.pow(scale, i)),
+                pyr[4 * i].height = Math.floor(pyr[0].height / Math.pow(scale, i)), pyr[4 * i].getContext("2d").drawImage(pyr[0], 0, 0, pyr[0].width, pyr[0].height, 0, 0, pyr[4 * i].width, pyr[4 * i].height),
                 ret[4 * i] = {
                     width: pyr[4 * i].width,
                     height: pyr[4 * i].height,
                     data: pyr[4 * i].getContext("2d").getImageData(0, 0, pyr[4 * i].width, pyr[4 * i].height).data
                 };
-                for (i = next; scale_upto + 2 * next > i; i++) pyr[4 * i] = document.createElement("canvas"), 
-                pyr[4 * i].width = Math.floor(pyr[4 * i - 4 * next].width / 2), pyr[4 * i].height = Math.floor(pyr[4 * i - 4 * next].height / 2), 
-                pyr[4 * i].getContext("2d").drawImage(pyr[4 * i - 4 * next], 0, 0, pyr[4 * i - 4 * next].width, pyr[4 * i - 4 * next].height, 0, 0, pyr[4 * i].width, pyr[4 * i].height), 
+                for (i = next; scale_upto + 2 * next > i; i++) pyr[4 * i] = document.createElement("canvas"),
+                pyr[4 * i].width = Math.floor(pyr[4 * i - 4 * next].width / 2), pyr[4 * i].height = Math.floor(pyr[4 * i - 4 * next].height / 2),
+                pyr[4 * i].getContext("2d").drawImage(pyr[4 * i - 4 * next], 0, 0, pyr[4 * i - 4 * next].width, pyr[4 * i - 4 * next].height, 0, 0, pyr[4 * i].width, pyr[4 * i].height),
                 ret[4 * i] = {
                     width: pyr[4 * i].width,
                     height: pyr[4 * i].height,
                     data: pyr[4 * i].getContext("2d").getImageData(0, 0, pyr[4 * i].width, pyr[4 * i].height).data
                 };
-                for (i = 2 * next; scale_upto + 2 * next > i; i++) pyr[4 * i + 1] = document.createElement("canvas"), 
-                pyr[4 * i + 1].width = Math.floor(pyr[4 * i - 4 * next].width / 2), pyr[4 * i + 1].height = Math.floor(pyr[4 * i - 4 * next].height / 2), 
-                pyr[4 * i + 1].getContext("2d").drawImage(pyr[4 * i - 4 * next], 1, 0, pyr[4 * i - 4 * next].width - 1, pyr[4 * i - 4 * next].height, 0, 0, pyr[4 * i + 1].width - 2, pyr[4 * i + 1].height), 
+                for (i = 2 * next; scale_upto + 2 * next > i; i++) pyr[4 * i + 1] = document.createElement("canvas"),
+                pyr[4 * i + 1].width = Math.floor(pyr[4 * i - 4 * next].width / 2), pyr[4 * i + 1].height = Math.floor(pyr[4 * i - 4 * next].height / 2),
+                pyr[4 * i + 1].getContext("2d").drawImage(pyr[4 * i - 4 * next], 1, 0, pyr[4 * i - 4 * next].width - 1, pyr[4 * i - 4 * next].height, 0, 0, pyr[4 * i + 1].width - 2, pyr[4 * i + 1].height),
                 ret[4 * i + 1] = {
                     width: pyr[4 * i + 1].width,
                     height: pyr[4 * i + 1].height,
                     data: pyr[4 * i + 1].getContext("2d").getImageData(0, 0, pyr[4 * i + 1].width, pyr[4 * i + 1].height).data
-                }, pyr[4 * i + 2] = document.createElement("canvas"), pyr[4 * i + 2].width = Math.floor(pyr[4 * i - 4 * next].width / 2), 
-                pyr[4 * i + 2].height = Math.floor(pyr[4 * i - 4 * next].height / 2), pyr[4 * i + 2].getContext("2d").drawImage(pyr[4 * i - 4 * next], 0, 1, pyr[4 * i - 4 * next].width, pyr[4 * i - 4 * next].height - 1, 0, 0, pyr[4 * i + 2].width, pyr[4 * i + 2].height - 2), 
+                }, pyr[4 * i + 2] = document.createElement("canvas"), pyr[4 * i + 2].width = Math.floor(pyr[4 * i - 4 * next].width / 2),
+                pyr[4 * i + 2].height = Math.floor(pyr[4 * i - 4 * next].height / 2), pyr[4 * i + 2].getContext("2d").drawImage(pyr[4 * i - 4 * next], 0, 1, pyr[4 * i - 4 * next].width, pyr[4 * i - 4 * next].height - 1, 0, 0, pyr[4 * i + 2].width, pyr[4 * i + 2].height - 2),
                 ret[4 * i + 2] = {
                     width: pyr[4 * i + 2].width,
                     height: pyr[4 * i + 2].height,
                     data: pyr[4 * i + 2].getContext("2d").getImageData(0, 0, pyr[4 * i + 2].width, pyr[4 * i + 2].height).data
-                }, pyr[4 * i + 3] = document.createElement("canvas"), pyr[4 * i + 3].width = Math.floor(pyr[4 * i - 4 * next].width / 2), 
-                pyr[4 * i + 3].height = Math.floor(pyr[4 * i - 4 * next].height / 2), pyr[4 * i + 3].getContext("2d").drawImage(pyr[4 * i - 4 * next], 1, 1, pyr[4 * i - 4 * next].width - 1, pyr[4 * i - 4 * next].height - 1, 0, 0, pyr[4 * i + 3].width - 2, pyr[4 * i + 3].height - 2), 
+                }, pyr[4 * i + 3] = document.createElement("canvas"), pyr[4 * i + 3].width = Math.floor(pyr[4 * i - 4 * next].width / 2),
+                pyr[4 * i + 3].height = Math.floor(pyr[4 * i - 4 * next].height / 2), pyr[4 * i + 3].getContext("2d").drawImage(pyr[4 * i - 4 * next], 1, 1, pyr[4 * i - 4 * next].width - 1, pyr[4 * i - 4 * next].height - 1, 0, 0, pyr[4 * i + 3].width - 2, pyr[4 * i + 3].height - 2),
                 ret[4 * i + 3] = {
                     width: pyr[4 * i + 3].width,
                     height: pyr[4 * i + 3].height,
@@ -16370,7 +16370,7 @@
                 return [ ret ];
             }
             function core(pyr) {
-                var i, j, k, x, y, q, cascade = this.shared.cascade, scale = (this.shared.interval, 
+                var i, j, k, x, y, q, cascade = this.shared.cascade, scale = (this.shared.interval,
                 this.shared.scale), next = this.shared.next, scale_upto = this.shared.scale_upto, scale_x = 1, scale_y = 1, dx = [ 0, 1, 0, 1 ], dy = [ 0, 0, 1, 1 ], seq = [];
                 for (i = 0; scale_upto > i; i++) {
                     var qw = pyr[4 * i + 8 * next].width - Math.floor(cascade.width / 4), qh = pyr[4 * i + 8 * next].height - Math.floor(cascade.height / 4), step = [ 4 * pyr[4 * i].width, 4 * pyr[4 * i + 4 * next].width, 4 * pyr[4 * i + 8 * next].width ], paddings = [ 16 * pyr[4 * i].width - 16 * qw, 8 * pyr[4 * i + 4 * next].width - 8 * qw, 4 * pyr[4 * i + 8 * next].width - 4 * qw ];
@@ -16382,8 +16382,8 @@
                             pz: new Array(orig_feature[k].size),
                             nx: new Array(orig_feature[k].size),
                             nz: new Array(orig_feature[k].size)
-                        }, q = 0; q < orig_feature[k].size; q++) feature[k].px[q] = 4 * orig_feature[k].px[q] + orig_feature[k].py[q] * step[orig_feature[k].pz[q]], 
-                        feature[k].pz[q] = orig_feature[k].pz[q], feature[k].nx[q] = 4 * orig_feature[k].nx[q] + orig_feature[k].ny[q] * step[orig_feature[k].nz[q]], 
+                        }, q = 0; q < orig_feature[k].size; q++) feature[k].px[q] = 4 * orig_feature[k].px[q] + orig_feature[k].py[q] * step[orig_feature[k].pz[q]],
+                        feature[k].pz[q] = orig_feature[k].pz[q], feature[k].nx[q] = 4 * orig_feature[k].nx[q] + orig_feature[k].ny[q] * step[orig_feature[k].nz[q]],
                         feature[k].nz[q] = orig_feature[k].nz[q];
                     }
                     for (q = 0; 4 > q; q++) {
@@ -16399,7 +16399,7 @@
                                         if (nmax >= pmin) sum += alpha[2 * k]; else {
                                             var f, shortcut = !0;
                                             for (f = 0; f < feature_k.size; f++) {
-                                                if (feature_k.pz[f] >= 0 && (p = u8[feature_k.pz[f]][u8o[feature_k.pz[f]] + feature_k.px[f]], 
+                                                if (feature_k.pz[f] >= 0 && (p = u8[feature_k.pz[f]][u8o[feature_k.pz[f]] + feature_k.px[f]],
                                                 pmin > p)) {
                                                     if (nmax >= p) {
                                                         shortcut = !1;
@@ -16407,7 +16407,7 @@
                                                     }
                                                     pmin = p;
                                                 }
-                                                if (feature_k.nz[f] >= 0 && (n = u8[feature_k.nz[f]][u8o[feature_k.nz[f]] + feature_k.nx[f]], 
+                                                if (feature_k.nz[f] >= 0 && (n = u8[feature_k.nz[f]][u8o[feature_k.nz[f]] + feature_k.nx[f]],
                                                 n > nmax)) {
                                                     if (n >= pmin) {
                                                         shortcut = !1;
@@ -16461,8 +16461,8 @@
                     };
                     for (i = 0; i < seq.length; i++) {
                         var r1 = seq[i], idx = idx_seq[i];
-                        0 == comps[idx].neighbors && (comps[idx].confidence = r1.confidence), ++comps[idx].neighbors, 
-                        comps[idx].x += r1.x, comps[idx].y += r1.y, comps[idx].width += r1.width, comps[idx].height += r1.height, 
+                        0 == comps[idx].neighbors && (comps[idx].confidence = r1.confidence), ++comps[idx].neighbors,
+                        comps[idx].x += r1.x, comps[idx].y += r1.y, comps[idx].width += r1.width, comps[idx].height += r1.height,
                         comps[idx].confidence = Math.max(comps[idx].confidence, r1.confidence);
                     }
                     var seq2 = [];
@@ -16495,8 +16495,8 @@
             }
             if (void 0 !== this.shared) {
                 var params = get_named_arguments(arguments, [ "canvas", "cascade", "interval", "min_neighbors" ]);
-                this.shared.canvas = params.canvas, this.shared.interval = params.interval, this.shared.min_neighbors = params.min_neighbors, 
-                this.shared.cascade = params.cascade, this.shared.scale = Math.pow(2, 1 / (params.interval + 1)), 
+                this.shared.canvas = params.canvas, this.shared.interval = params.interval, this.shared.min_neighbors = params.min_neighbors,
+                this.shared.cascade = params.cascade, this.shared.scale = Math.pow(2, 1 / (params.interval + 1)),
                 this.shared.next = params.interval + 1, this.shared.scale_upto = Math.floor(Math.log(Math.min(params.canvas.width / params.cascade.width, params.canvas.height / params.cascade.height)) / Math.log(this.shared.scale));
                 var i;
                 for (i = 0; i < this.shared.cascade.stage_classifier.length; i++) this.shared.cascade.stage_classifier[i].orig_feature = this.shared.cascade.stage_classifier[i].feature;
@@ -16528,15 +16528,16 @@
             complete: function() {},
             error: function() {}
         };
-        return $.isFunction(settingsOrCallback) ? options.complete = settingsOrCallback : $.extend(options, settingsOrCallback), 
+        return $.isFunction(settingsOrCallback) ? options.complete = settingsOrCallback : $.extend(options, settingsOrCallback),
         this.each(function() {
             function detect() {
                 var source, canvas;
-                if (time = new Date().getTime(), $$.is("img")) source = new Image(), source.src = $$.attr("src"), 
+                if (time = new Date().getTime(), $$.is("img")) source = new Image(), source.src = $$.attr("src"),
+                canvas = ccv.pre(source); else if ($$.is("image")) source = new Image(), source.src = $$.attr("xlink:href"),
                 canvas = ccv.pre(source); else if ($$.is("video") || $$.is("canvas")) {
                     var copy, context;
-                    source = $$[0], copy = document.createElement("canvas"), copy.setAttribute("width", source.videoWidth || source.width), 
-                    copy.setAttribute("height", source.videoHeight || source.height), context = copy.getContext("2d"), 
+                    source = $$[0], copy = document.createElement("canvas"), copy.setAttribute("width", source.videoWidth || source.width),
+                    copy.setAttribute("height", source.videoHeight || source.height), context = copy.getContext("2d"),
                     context.drawImage(source, 0, 0), canvas = ccv.pre(copy);
                 }
                 options.grayscale && (canvas = ccv.grayscale(canvas));
@@ -16559,14 +16560,14 @@
                 }
             }
             function done(faces) {
-                for (var n = faces.length, data = [], i = 0; n > i; ++i) null !== options.confidence && faces[i].confidence <= options.confidence || (faces[i].positionX = position.left + faces[i].x, 
-                faces[i].positionY = position.top + faces[i].y, faces[i].offsetX = offset.left + faces[i].x, 
-                faces[i].offsetY = offset.top + faces[i].y, faces[i].scaleX = scaleX, faces[i].scaleY = scaleY, 
+                for (var n = faces.length, data = [], i = 0; n > i; ++i) null !== options.confidence && faces[i].confidence <= options.confidence || (faces[i].positionX = position.left + faces[i].x,
+                faces[i].positionY = position.top + faces[i].y, faces[i].offsetX = offset.left + faces[i].x,
+                faces[i].offsetY = offset.top + faces[i].y, faces[i].scaleX = scaleX, faces[i].scaleY = scaleY,
                 data.push(faces[i]));
                 data.time = new Date().getTime() - time, options.complete.apply($$, [ data ]);
             }
             var $$ = $(this), offset = $$.offset(), position = $$.position(), scaleX = $$.width() / (this.naturalWidth || this.videoWidth) || 1, scaleY = $$.height() / (this.naturalHeight || this.videoHeight) || 1;
-            return $$.is("img, video, canvas") ? detect() : (options.error.apply($$, [ 1, "Face detection is possible on images, videos and canvas only." ]), 
+            return $$.is("img, video, canvas, image") ? detect() : (options.error.apply($$, [ 1, "Face detection is possible on images, videos and canvas only." ]),
             void options.complete.apply($$, [ [] ]));
         });
     };

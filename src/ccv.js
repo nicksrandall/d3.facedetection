@@ -17,7 +17,7 @@ try {
         var scripts = document.getElementsByTagName('script');
 
         for (var i = 0; i < scripts.length; i++) {
-            if (scripts[i].src.match(/(jquery\.facedetection(\.min)?\.js)|\/ccv\.js/)) {
+            if (scripts[i].src.match(/(d3\.facedetection(\.min)?\.js)|\/ccv\.js/)) {
                 return scripts[i].src;
             }
         }
@@ -32,7 +32,7 @@ if (parallable === undefined) {
 		"use strict";
 
 		parallable.core[funct.toString()] = funct().core;
-		
+
 		return function () {
 			var i;
 			var async, worker_num, params;
@@ -111,6 +111,8 @@ function get_named_arguments(params, names) {
 var ccv = {
 	pre : function (image) {
 		if (image.tagName.toLowerCase() == "img") {
+      image.style.width = '100%';
+      image.style.height = '100%';
 			var canvas = document.createElement("canvas");
 			document.body.appendChild(image);
 			canvas.width = image.offsetWidth;
@@ -203,7 +205,7 @@ var ccv = {
 	},
 
 	detect_objects : parallable(scriptPath, function (canvas, cascade, interval, min_neighbors) {
-		if (this.shared !== undefined) {
+    if (this.shared !== undefined) {
 			var params = get_named_arguments(arguments, ["canvas", "cascade", "interval", "min_neighbors"]);
 			this.shared.canvas = params.canvas;
 			this.shared.interval = params.interval;
@@ -479,7 +481,7 @@ var ccv = {
 		};
 		return { "pre" : pre, "core" : core, "post" : post };
 	})
-}
+};
 
 onmessage = function (event) {
 	var data = (typeof event.data == "string") ? JSON.parse(event.data) : event.data;
