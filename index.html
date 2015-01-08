@@ -33,9 +33,9 @@
 
 <p>A d3.js plugin to detect faces on images (both HTML and SVG), videos and canvases to get their coordinates.</p>
 
-<p>This is a fork of the very popular <a href="http://facedetection.jaysalvat.com">jquery.facedetection</a> by <a href="https://github.com/jaysalvat">jaysalvat</a></p>
-
 <p><strong>Importante note:</strong> This plugin uses an algorithm by <a href="http://liuliu.me/">Liu Liu</a>.</p>
+
+<p>This is a fork of the very popular <a href="http://facedetection.jaysalvat.com">jquery.facedetection</a> by <a href="https://github.com/jaysalvat">jaysalvat</a></p>
 
 <h2>
 <a id="get-started" class="anchor" href="#get-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get started</h2>
@@ -43,42 +43,40 @@
 <p>Download the plugin with the method of your choice.</p>
 
 <ul>
-<li>Download the <a href="https://github.com/nicksrandall/d3.facedetection/archive/v3.0.0.tar.gz">last release</a> manually</li>
-<li>
-<p>Or install it with <a href="http://bower.io/">Bower</a>.</p>
+<li>Download the <a href="https://github.com/nicksrandall/d3.facedetection/zipball/master">last release</a> manually</li>
+<li>Or install it with <a href="http://bower.io/">Bower</a>.</li>
+</ul>
 
 <pre><code>bower install d3.facedetection
 </code></pre>
-</li>
-<li>
-<p>Or install it with <a href="https://www.npmjs.org/package/d3.facedetection">NPM</a>.</p>
+
+<ul>
+<li>Or install it with <a href="https://www.npmjs.org/package/d3.facedetection">NPM</a>.</li>
+</ul>
 
 <pre><code>npm install d3.facedetection
 </code></pre>
-</li>
-</ul>
 
 <p>Include <a href="https://github.com/mbostock/d3/releases/download/v3.5.3/d3.zip">d3</a> and the plugin.</p>
 
-<pre><code>&lt;script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"&gt;&lt;/script&gt; 
-&lt;script src="path/to/dist/d3.facedetection.min.js"&gt;&lt;/script&gt; 
-</code></pre>
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt; 
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>path/to/dist/d3.facedetection.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt; </pre></div>
 
 <p>Set a picture with some faces in your HTML (or SVG) page.</p>
 
-<pre><code>&lt;img id="picture" src="img/face.jpg"&gt;
-</code></pre>
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">svg</span> <span class="pl-e">height</span>=<span class="pl-s1"><span class="pl-pds">"</span>350px<span class="pl-pds">"</span></span> <span class="pl-e">width</span>=<span class="pl-s1"><span class="pl-pds">"</span>620px<span class="pl-pds">"</span></span> <span class="pl-e">version</span>=<span class="pl-s1"><span class="pl-pds">"</span>1.1<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span>=<span class="pl-s1"><span class="pl-pds">"</span>http://www.w3.org/2000/svg<span class="pl-pds">"</span></span> <span class="pl-e">xmlns:xlink</span>= <span class="pl-s1"><span class="pl-pds">"</span>http://www.w3.org/1999/xlink<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">image</span> <span class="pl-e">id</span>=<span class="pl-s1"><span class="pl-pds">"</span>picture<span class="pl-pds">"</span></span> <span class="pl-e">xlink:href</span>=<span class="pl-s1"><span class="pl-pds">"</span>picture.jpg<span class="pl-pds">"</span></span> <span class="pl-e">x</span>=<span class="pl-s1"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">y</span>=<span class="pl-s1"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span> <span class="pl-e">width</span>=<span class="pl-s1"><span class="pl-pds">"</span>620px<span class="pl-pds">"</span></span> <span class="pl-e">height</span>=<span class="pl-s1"><span class="pl-pds">"</span>350px<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">image</span>&gt;
+&lt;/<span class="pl-ent">svg</span>&gt;</pre></div>
 
 <p>Apply the plugin to this image and get the face coordinates.</p>
 
-<pre><code>&lt;script&gt;
-    d3.select('#picture').faceDetection({
-        complete: function (faces) {
-            console.log(faces);
-        }
-    });
-&lt;/script&gt; 
-</code></pre>
+<div class="highlight highlight-html"><pre><span class="pl-s2">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s2">    d3.<span class="pl-s3">select</span>(<span class="pl-s1"><span class="pl-pds">'</span>#picture<span class="pl-pds">'</span></span>).faceDetection({</span>
+<span class="pl-s2">        <span class="pl-en">complete</span>: <span class="pl-st">function</span> (<span class="pl-vpf">faces</span>) {</span>
+<span class="pl-s2">            <span class="pl-en">console</span><span class="pl-s3">.log</span>(faces);</span>
+<span class="pl-s2">        }</span>
+<span class="pl-s2">    });</span>
+<span class="pl-s2">&lt;/<span class="pl-ent">script</span>&gt; </span></pre></div>
 
 <h2>
 <a id="results" class="anchor" href="#results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Results</h2>
@@ -125,22 +123,21 @@
 <li>
 <strong>grayscale</strong> — Convert to grayscale before processing (default true)</li>
 <li>
-<p><strong>complete</strong> — Callback function trigged after the detection is completed</p>
-
-<pre><code>complete: function (faces) {
-    // ...
-}
-</code></pre>
-</li>
-<li>
-<p><strong>error</strong> — Callback function trigged on errors</p>
-
-<pre><code>error: function (code, message) {
-    // ...
-}
-</code></pre>
-</li>
+<strong>complete</strong> — Callback function trigged after the detection is completed</li>
 </ul>
+
+<div class="highlight highlight-js"><pre><span class="pl-en">complete</span>: <span class="pl-st">function</span> (<span class="pl-vpf">faces</span>) {
+    <span class="pl-c">// ...</span>
+}</pre></div>
+
+<ul>
+<li>
+<strong>error</strong> — Callback function trigged on errors</li>
+</ul>
+
+<div class="highlight highlight-js"><pre><span class="pl-en">error</span>: <span class="pl-st">function</span> (<span class="pl-vpf">code</span>, <span class="pl-vpf">message</span>) {
+    <span class="pl-c">// ...</span>
+}</pre></div>
         </section>
 
         <aside id="sidebar">
