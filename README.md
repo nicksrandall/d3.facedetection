@@ -1,47 +1,55 @@
-d3.js Face Detection Plugin
-============================
+# d3.js Face Detection Plugin
 
 A d3.js plugin to detect faces on images (both HTML and SVG), videos and canvases to get their coordinates.
 
-> This is a fork of the very popular [jquery.facedetection](http://facedetection.jaysalvat.com) by [jaysalvat](https://github.com/jaysalvat)
-
 **Importante note:** This plugin uses an algorithm by [Liu Liu](http://liuliu.me/).
 
-Get started
------------
+This is a fork of the very popular [jquery.facedetection](http://facedetection.jaysalvat.com) by [jaysalvat](https://github.com/jaysalvat)
+
+## Get started
 
 Download the plugin with the method of your choice.
 
-- Download the [last release](https://github.com/nicksrandall/d3.facedetection/archive/v3.0.0.tar.gz) manually
+- Download the [last release](https://github.com/nicksrandall/d3.facedetection/zipball/master) manually
 - Or install it with [Bower](http://bower.io/).
 
-        bower install d3.facedetection
+```
+bower install d3.facedetection
+```
 
 - Or install it with [NPM](https://www.npmjs.org/package/d3.facedetection).
 
-        npm install d3.facedetection
+```
+npm install d3.facedetection
+```
 
 Include [d3](https://github.com/mbostock/d3/releases/download/v3.5.3/d3.zip) and the plugin.
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script> 
-    <script src="path/to/dist/d3.facedetection.min.js"></script> 
+```html
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script> 
+<script src="path/to/dist/d3.facedetection.min.js"></script> 
+```
 
 Set a picture with some faces in your HTML (or SVG) page.
 
-    <img id="picture" src="img/face.jpg">
-
+```html
+<svg height="350px" width="620px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+  <image id="picture" xlink:href="picture.jpg" x="0" y="0" width="620px" height="350px"></image>
+</svg>
+```
 Apply the plugin to this image and get the face coordinates.
 
-    <script>
-        d3.select('#picture').faceDetection({
-            complete: function (faces) {
-                console.log(faces);
-            }
-        });
-    </script> 
+```html
+<script>
+    d3.select('#picture').faceDetection({
+        complete: function (faces) {
+            console.log(faces);
+        }
+    });
+</script> 
+```
 
-Results
--------
+## Results
 
 Returns an array of found faces object:
 
@@ -57,8 +65,7 @@ Returns an array of found faces object:
 - **scaleY** — Ratio between original image height and displayed height
 - **confidence** — Level of confidence
 
-Settings
---------
+## Settings
 - **interval** — Interval (default 4)
 - **minNeighbors** — Minimum neighbors threshold which sets the cutoff level for discarding rectangle groups as face (default 1)
 - **confidence** — Minimum confidence (default null)
@@ -66,13 +73,16 @@ Settings
 - **grayscale** — Convert to grayscale before processing (default true)
 - **complete** — Callback function trigged after the detection is completed
 
-        complete: function (faces) {
-            // ...
-        }
-    
+```js
+complete: function (faces) {
+    // ...
+}
+```
+
 - **error** — Callback function trigged on errors
 
-        error: function (code, message) {
-            // ...
-        }
-   
+```js
+error: function (code, message) {
+    // ...
+}
+```
